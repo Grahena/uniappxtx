@@ -7,7 +7,6 @@ import {ref} from 'vue'
 import CategoryPanel from './components/CategoryPanel.vue'
 import HotPanel from './components/HotPanel.vue'
 import XtxGuess from '@/components/XtxGuess.vue'
-import type { XtxGuessInstance } from '@/components/components'
 
 const bannerList = ref<BannerItem[]>([])
 //获取轮播图

@@ -4,7 +4,7 @@ import { http } from "@/utils/http"
 
 
 
-type hotType = PageParams & {subType:string}
+type hotType = PageParams & {subType?:string}
 export const getHotRecommandApi = (url:string,data?:hotType)=>{
   return http<HotResult>({
     method:'GET',
