@@ -20,6 +20,7 @@ const onGetphonenumber: UniHelper.ButtonOnGetphonenumber = (ev) => {
 //模拟登录
 const onGetphonenumberSimple = async () => {
   const res = await postLoginMNApi('18305868071')
+  // const res = await postLoginMNApi('13123456789')
   loginSuccess(res.result)
 }
 const loginSuccess = (profile: LoginResult) => {

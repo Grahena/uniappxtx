@@ -1,7 +1,10 @@
 // src/pages/my/my.vue
 
 <script setup lang="ts">
+import type XtxGuess from '@/components/XtxGuess.vue';
+import { useGuestList } from '@/composables/useGuessList';
 import { useMemberStore } from '@/stores';
+import { ref } from 'vue';
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
@@ -13,10 +16,13 @@ const orderTypes = [
   { type: 4, text: '待评价', icon: 'icon-comment' },
 ]
 const memberStore = useMemberStore()
+
+//猜你喜欢
+const { guessRef, onscrolltolower } = useGuestList()
 </script>
 
 <template>
-  <scroll-view class="viewport" scroll-y enable-back-to-top>
+  <scroll-view class="viewport" @scrolltolower="onscrolltolower" scroll-y enable-back-to-top>
     <!-- 个人资料 -->
     <view class="profile" :style="{ paddingTop: safeAreaInsets!.top + 'px' }">
       <!-- 情况1：已登录 -->
@@ -71,7 +77,7 @@ const memberStore = useMemberStore()
     </view>
     <!-- 猜你喜欢 -->
     <view class="guess">
-      <XtxGuess ref="guessRef" />
+      <XtxGuess ref="guessRef" :list="[]" />
     </view>
   </scroll-view>
 </template>
@@ -84,7 +90,7 @@ page {
 }
 
 .viewport {
-  height: 100%;
+  height: 100vh;
   background-repeat: no-repeat;
   background-image: url(https://pcapi-xiaotuxian-front-devtest.itheima.net/miniapp/images/center_bg.png);
   background-size: 100% auto;
